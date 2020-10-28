@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+             http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- consumer's application name, used for tracing dependency relationship (not a matching criterion),
+    don't set it same as provider -->
+    <dubbo:application name="demo-consumer"/>
+    <!-- 使用 nacos 注册中心暴露发现服务地址 -->
+    <dubbo:registry address="nacos://127.0.0.1:8848"/>
+    <!-- generate proxy for the remote service, then demoService can be used in the same way as the
+     生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:reference id="providerService" check="false" interface="com.sans.base.service.IProviderService"/>
+</beans>
